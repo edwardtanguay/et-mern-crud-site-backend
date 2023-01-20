@@ -16,13 +16,14 @@ console.log('TEST');
 console.log(config.NODE_ENVIRONMENT);
 
 const app = express();
+app.use(express.json());
 app.use(cors({
 	origin:config.FRONTEND_URL,
 	methods: ['POST', 'GET', 'DELETE', 'PUT'],
 	credentials: true
 }));
+app.set('trust proxy', 1);
 app.use(cookieParser());
-app.use(express.json());
 app.use(
 	session({
 		resave: true,
