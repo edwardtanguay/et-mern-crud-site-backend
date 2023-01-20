@@ -64,6 +64,7 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 	if (password === config.ADMIN_PASSWORD) {
 		req.session.user = 'admin' as any;
 		req.session.cookie.expires = new Date(Date.now() + config.SECONDS_TILL_SESSION_TIMEOUT * 1000);
+		console.log('user', req.session.user);
 		req.session.save();
 		res.status(200).send('ok');
 	} else {
@@ -72,7 +73,7 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 });
 
 app.get('/get-current-user', (req: express.Request, res: express.Response) => {
-	console.log('user', req.session.user);
+	console.log('session', req.session);
 	if (req.session.user) {
 		res.send(req.session.user);
 	} else {
