@@ -72,6 +72,7 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 });
 
 app.get('/get-current-user', (req: express.Request, res: express.Response) => {
+	console.log('user', req.session.user);
 	if (req.session.user) {
 		res.send(req.session.user);
 	} else {
