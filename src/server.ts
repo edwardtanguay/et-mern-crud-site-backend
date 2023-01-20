@@ -22,6 +22,7 @@ app.use(cors({
 	methods: ['POST', 'GET', 'DELETE', 'PUT'],
 	credentials: true
 }));
+app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(
 	session({
