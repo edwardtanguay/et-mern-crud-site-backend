@@ -142,8 +142,56 @@ This starter is not only a good way to learn the basic skills of building a full
   - e.g. `git clone git@github.com:edwardtanguay/et-mern-crud-site-backend.git`
 - navigate into your backend project directory
   - e.g. `cd et-mern-crud-site`
+- set up `.env` file
+  - replace all capitalized variables with appropriate data
+    - USERNAME
+    - PASSWORD
+    - RANDOMSTRING
+    - ADMINPASSWORD
+  - change the FRONTEND_URL appropriately
+
+  ``` text
+  APP_NAME = Book Site API
+  SECONDS_TILL_SESSION_TIMEOUT = 3600 
+  PORT = 5001
+  MONGODB_CONNECTION = mongodb+srv://USERNAME:PASSWORD@cluster0.ogshn.mongodb.net/bookapi?retryWrites=true&w=majority
+  SESSION_SECRET = RANDOMSTRING
+  ADMIN_PASSWORD = ADMINPASSWORD
+  FRONTEND_URL = https://et-mern-crud-site.tanguay.eu
+  ```
+
 - set up the site in pm2
   - `npm run setup`
+- deploy your site
+  - `npm run deploy`
+- test that your application is running
+  - in your firewall, add incoming rule for port 5001
+  - in your browser, go to e.g. `http://tanguay.eu:5001` (not https)
+  - you should see your backend running in the browser
+  - in your firewall, remove the rule again
+- set up a subdomain for your site, e.g. `et-mern-crud-site-backend.tanguay.eu`
+- create nginx config file for your backend site
+  - e.g. `/etc/nginx/conf.d/et-mern-crud-site-backend.conf`
+
+  ``` text
+  server {
+          server_name et-mern-crud-site-backend.tanguay.eu;
+          location / {
+                  proxy_pass http://tanguay.eu:5001;
+          }
+  }
+  ```
+
+- register the https certificate for this subdomain
+  - `sudo certbot --nginx`
+  - choose the number of your site
+- restart the nginx server
+  - `sudo systemctl restart nginx`
+- in your browser, go to your site at e.g. [https://et-mern-crud-site-backend.tanguay.eu](https://et-mern-crud-site-backend.tanguay.eu)
+
+## DEPLOY FRONTEND TO LINUX CLOUD SERVER AT HETZNER
+
+- nnn
 
 ## more starters, templates and frameworks
 
