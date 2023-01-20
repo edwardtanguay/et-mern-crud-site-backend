@@ -12,6 +12,9 @@ declare module 'express-session' {
 	}
 }
 
+console.log('TEST');
+console.log(config.NODE_ENVIRONMENT);
+
 const app = express();
 app.use(cors({
 	origin:config.FRONTEND_URL,
