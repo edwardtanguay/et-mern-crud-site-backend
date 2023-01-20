@@ -12,14 +12,11 @@ declare module 'express-session' {
 	}
 }
 
-console.log('TEST');
-console.log(config.NODE_ENVIRONMENT);
-
 const app = express();
 app.use(express.json());
 app.use(cors({
 	origin:config.FRONTEND_URL,
-	methods: ['POST', 'GET', 'DELETE', 'PUT'],
+	methods: ['POST', 'GET', 'DELETE', 'PUT', 'OPTIONS', 'HEAD'],
 	credentials: true
 }));
 app.set('trust proxy', 1);
@@ -36,6 +33,13 @@ app.use(
 		}
 	})
 );
+
+app.all('/', function (req, res, next) {
+	res.header("Access-Control-Allow-Origin", "http://localhost:5173");
+	res.header("Access-Control-Allow-Headers", "X-Requested-With");
+	next();
+});
+
 
 
 // PUBLIC ROUTES
