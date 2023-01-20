@@ -173,14 +173,14 @@ This starter is not only a good way to learn the basic skills of building a full
 - create nginx config file for your backend site
   - e.g. `/etc/nginx/conf.d/et-mern-crud-site-backend.conf`
 
-  ``` text
-  server {
-          server_name et-mern-crud-site-backend.tanguay.eu;
-          location / {
-                  proxy_pass http://tanguay.eu:5001;
-          }
-  }
-  ```
+    ``` text
+    server {
+            server_name et-mern-crud-site-backend.tanguay.eu;
+            location / {
+                    proxy_pass http://tanguay.eu:5001;
+            }
+    }
+    ```
 
 - register the https certificate for this subdomain
   - `sudo certbot --nginx`
