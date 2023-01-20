@@ -27,8 +27,8 @@ app.use(
 		secret: config.SESSION_SECRET,
 		cookie: {
 			httpOnly: true,
-			sameSite: 'lax',
-			secure: false
+			sameSite: config.NODE_ENVIRONMENT === 'production' ? 'none' : 'lax',
+			secure: config.NODE_ENVIRONMENT === 'production'
 		}
 	})
 );

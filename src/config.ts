@@ -15,3 +15,5 @@ export const SESSION_SECRET = process.env.SESSION_SECRET;
 export const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 export const FRONTEND_URL = process.env.FRONTEND_URL;
+
+export const NODE_ENVIRONMENT = process.env.NODE_ENVIRONMENT;

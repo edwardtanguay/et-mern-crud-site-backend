@@ -59,7 +59,7 @@ This starter is not only a good way to learn the basic skills of building a full
 
 ### create .env file for backend
 
-- create an `.env` file in the root directory of your project
+- create a `.env` file in the root directory of your project
 - copy in the following content
 - replace all capitalized variables with appropriate data
   - USERNAME
@@ -76,6 +76,7 @@ This starter is not only a good way to learn the basic skills of building a full
   SESSION_SECRET = RANDOMSTRING
   ADMIN_PASSWORD = ADMINPASSWORD
   FRONTEND_URL = http://localhost:5002
+  NODE_ENVIRONMENT = development
   ```
 
 ### start the backend
@@ -136,12 +137,11 @@ This starter is not only a good way to learn the basic skills of building a full
 - push your backend to a repository on GitHub
 - SSH into your Hetzner account
 - go to your web projects directory, e.g.
-  - e.g. `/home/edward/projects`
   - e.g. `/var/www`
 - clone your repository there
   - e.g. `git clone git@github.com:edwardtanguay/et-mern-crud-site-backend.git`
 - navigate into your backend project directory
-  - e.g. `cd et-mern-crud-site`
+  - e.g. `cd et-mern-crud-site-backend`
 - set up `.env` file
   - replace all capitalized variables with appropriate data
     - USERNAME
@@ -158,6 +158,7 @@ This starter is not only a good way to learn the basic skills of building a full
   SESSION_SECRET = RANDOMSTRING
   ADMIN_PASSWORD = ADMINPASSWORD
   FRONTEND_URL = https://et-mern-crud-site.tanguay.eu
+  NODE_ENVIRONMENT = production
   ```
 
 - set up the site in pm2
@@ -191,7 +192,64 @@ This starter is not only a good way to learn the basic skills of building a full
 
 ## DEPLOY FRONTEND TO LINUX CLOUD SERVER AT HETZNER
 
-- nnn
+- in your npm scripts, change all references of `et-mern-crud-site` to your site name
+
+  ``` text
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "cp": "node cli/cp.mjs",
+    "setup": "pm2 start --name et-mern-crud-site-frontend npm -- start",
+    "start": "vite preview --host --port 5002",
+    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-frontend"
+  },
+  ```
+
+- push your frontend to a repository on GitHub
+- SSH into your Hetzner account
+- go to your web projects directory, e.g.
+  - e.g. `/var/www`
+- clone your repository there
+  - e.g. `git clone git@github.com:edwardtanguay/et-mern-crud-site-frontend.git`
+- navigate into your frontend project directory
+  - e.g. `cd et-mern-crud-site-frontend`
+- create a `.env` file with the URL of the backend that you just set up
+
+  ``` text
+  VITE_BACKEND_URL = https://et-mern-crud-site-backend.tanguay.eu
+  ```
+
+- set up the site in pm2
+  - `npm run setup`
+- deploy your site
+  - `npm run deploy`
+- test that your application is running
+  - in your firewall, add incoming rule for port 5002
+  - in your browser, go to e.g. `http://tanguay.eu:5002` (not https)
+  - you should see your frontend running in the browser
+  - in your firewall, remove the rule again
+- set up a subdomain for your site, e.g. `et-mern-crud-site.tanguay.eu` (without `-frontend`)
+- create nginx config file for your frontend site
+  - e.g. `/etc/nginx/conf.d/et-mern-crud-site.conf` (without `-frontend`)
+
+    ``` text
+    server {
+            server_name et-mern-crud-site.tanguay.eu;
+            location / {
+                    proxy_pass http://tanguay.eu:5002;
+            }
+    }
+    ```
+
+- register the https certificate for this subdomain
+  - `sudo certbot --nginx`
+  - choose the number of your site
+- restart the nginx server
+  - `sudo systemctl restart nginx`
+- in your browser, go to your site at e.g. [https://et-mern-crud-site.tanguay.eu](https://et-mern-crud-site.tanguay.eu)
+
+
 
 ## more starters, templates and frameworks
 
