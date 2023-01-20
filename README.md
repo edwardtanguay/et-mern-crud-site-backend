@@ -28,18 +28,18 @@ This starter is not only a good way to learn the basic skills of building a full
 
 - open your terminal
 - create a directory for this project, e.g.
-  - `mkdir site001`
+  - `mkdir et-mern-crud-site`
 
 ## INSTALL BACKEND
 
 ### set up directory and editor for backend
 
 - enter your project directory
-  - `cd site001`
+  - `cd et-mern-crud-site`
 - create backend directory
-  - `git clone git@github.com:edwardtanguay/et-mern-crud-site-backend.git site001-backend`
+  - `git clone git@github.com:edwardtanguay/et-mern-crud-site-backend.git et-mern-crud-site-backend`
 - open VSCode in the backend directory
-  - `code site001-backend`
+  - `code et-mern-crud-site-backend`
 - open VSCode terminal
 - delete old and create new Git repository
   - `rm -rf .git`
@@ -87,11 +87,11 @@ This starter is not only a good way to learn the basic skills of building a full
 ### set up directory and editor for frontend
 
 - enter your project directory
-  - `cd site001`
+  - `cd et-mern-crud-site`
 - create frontend directory
-  - `git clone git@github.com:edwardtanguay/et-mern-crud-site-frontend.git site001-frontend`
+  - `git clone git@github.com:edwardtanguay/et-mern-crud-site-frontend.git et-mern-crud-site-frontend`
 - open VSCode in the frontend directory
-  - `code site001-frontend`
+  - `code et-mern-crud-site-frontend`
 - open VSCode terminal
 - delete old and create new Git repository
   - `rm -rf .git`
@@ -118,6 +118,32 @@ This starter is not only a good way to learn the basic skills of building a full
 - `npm run dev`
 - open in browser
 - click url in terminal
+
+## DEPLOY BACKEND TO LINUX CLOUD SERVER AT HETZNER
+
+- in your npm scripts, change all references of `et-mern-crud-site` to your site name
+
+  ``` text
+  "scripts": {
+    "dev": "nodemon",
+    "build": "tsc",
+    "setup": "pm2 start --name et-mern-crud-site-backend npm -- start",
+    "start": "node dist/server.js",
+    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-backend"
+  },
+  ```
+
+- push your backend to a repository on GitHub
+- SSH into your Hetzner account
+- go to your web projects directory, e.g.
+  - e.g. `/home/edward/projects`
+  - e.g. `/var/www`
+- clone your repository there
+  - e.g. `git clone git@github.com:edwardtanguay/et-mern-crud-site-backend.git`
+- navigate into your backend project directory
+  - e.g. `cd et-mern-crud-site`
+- set up the site in pm2
+  - `npm run setup`
 
 ## more starters, templates and frameworks
 
