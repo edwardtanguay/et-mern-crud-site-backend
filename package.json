@@ -9,7 +9,7 @@
 		"build": "tsc",
 		"setup": "pm2 start --name et-mern-crud-site-backend npm -- start",
 		"start": "node dist/server.js",
-		"deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-backend"
+		"deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-backend --update-env"
 	},
 	"nodemonConfig": {
 		"watch": [
