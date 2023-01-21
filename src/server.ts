@@ -19,7 +19,6 @@ app.use(cors({
 	methods: ['POST', 'GET', 'DELETE', 'PUT', 'OPTIONS', 'HEAD'],
 	credentials: true
 }));
-app.set('trust proxy', 1);
 app.use(cookieParser());
 app.use(
 	session({
@@ -28,19 +27,11 @@ app.use(
 		secret: config.SESSION_SECRET,
 		cookie: {
 			httpOnly: true,
-			sameSite: config.NODE_ENVIRONMENT === 'production' ? 'none' : 'lax',
-			secure: config.NODE_ENVIRONMENT === 'production'
+			sameSite: 'lax',
+			secure: false
 		}
 	})
 );
-
-app.all('/', function (req, res, next) {
-	res.header("Access-Control-Allow-Origin", "https://et-mern-crud-site.tanguay.eu");
-	res.header("Access-Control-Allow-Headers", "X-Requested-With");
-	next();
-});
-
-
 
 // PUBLIC ROUTES
 
@@ -64,8 +55,6 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 	if (password === config.ADMIN_PASSWORD) {
 		req.session.user = 'admin' as any;
 		req.session.cookie.expires = new Date(Date.now() + config.SECONDS_TILL_SESSION_TIMEOUT * 1000);
-		console.log('user', req.session.user);
-		console.log('session at login', req.session);
 		req.session.save();
 		res.status(200).send('ok');
 	} else {
@@ -74,7 +63,6 @@ app.post('/login', (req: express.Request, res: express.Response) => {
 });
 
 app.get('/get-current-user', (req: express.Request, res: express.Response) => {
-	console.log('session at get-current-user', req.session);
 	if (req.session.user) {
 		res.send(req.session.user);
 	} else {
