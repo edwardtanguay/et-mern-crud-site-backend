@@ -163,7 +163,7 @@ This starter is not only a good way to learn the basic skills of building a full
     "build": "tsc",
     "setup": "pm2 start --name et-mern-crud-site-backend npm -- start",
     "start": "node dist/server.js",
-    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-backend"
+    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-backend --update-env --time && pm2 save"
   },
   ```
 
@@ -235,7 +235,7 @@ This starter is not only a good way to learn the basic skills of building a full
     "cp": "node cli/cp.mjs",
     "setup": "pm2 start --name et-mern-crud-site-frontend npm -- start",
     "start": "vite preview --host --port 5002",
-    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-frontend"
+    "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-frontend --update-env --time && pm2 save"
   },
   ```
 
