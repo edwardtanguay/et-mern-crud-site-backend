@@ -41,6 +41,8 @@ This starter is not only a good way to learn the basic skills of building a full
 - open VSCode in the backend directory
   - `code et-mern-crud-site-backend`
 - open VSCode terminal
+- install node_modules
+  - `npm i`
 - delete old and create new Git repository
   - `rm -rf .git`
   - `git npm -b main`
