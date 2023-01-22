@@ -71,7 +71,7 @@ This starter is not only a good way to learn the basic skills of building a full
   - `npm i`
 - delete old and create new Git repository
   - `rm -rf .git`
-  - `git npm -b main`
+  - `git init -b main`
   - make initial commit
 - to distinguish your backend VSCode from your frontend VSCode, set the frame color
   - you need the [VSCode Peacock extension](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
@@ -128,7 +128,7 @@ This starter is not only a good way to learn the basic skills of building a full
 - open VSCode terminal
 - delete old and create new Git repository
   - `rm -rf .git`
-  - `git npm -b main`
+  - `git init -b main`
   - make initial commit
 - to distinguish your frontend VSCode from your backend VSCode, set the frame color
   - you need the [VSCode Peacock extension](https://marketplace.visualstudio.com/items?itemName=johnpapa.vscode-peacock)
