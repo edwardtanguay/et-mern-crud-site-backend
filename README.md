@@ -139,8 +139,7 @@ This starter is not only a good way to learn the basic skills of building a full
 ### create .env file for frontend
 
 - create an `.env` file in the root directory of your project
-- copy in the following content
-- make sure the backend URL is correct, e.g. if you changed the port number of your backend, then change it here as well
+- copy in the following content and change backend port if necessary
 
   ``` text
   VITE_BACKEND_URL = http://localhost:5001
