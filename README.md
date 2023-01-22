@@ -82,9 +82,12 @@ This starter is not only a good way to learn the basic skills of building a full
 - you can also change the backend/frontend ports if you need to, e.g. to avoid conflicts
 
 
-### start the backend
+### start and test the backend
 
 - `npm run dev`
+- click on URL shown in the terminal (e.g. http://localhost:5001)
+- click on `/books` link
+- change data in your MongoDB database to see that the changes are reflected in the browser
 
 ## INSTALL FRONTEND
 
