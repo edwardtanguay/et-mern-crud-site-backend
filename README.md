@@ -212,6 +212,10 @@ This starter is not only a good way to learn the basic skills of building a full
     "deploy": "git pull --no-rebase && npm i && npm run build && pm2 restart et-mern-crud-site-frontend --update-env --time && pm2 save"
   },
   ```
+  
+- note: if you want to change your port in the **start** command, e.g. if 5002 is being used by other site:
+  - 1. change it in the start command above
+  - 2.  also change it in the `vite.config.ts` file
 
 - push your frontend to a repository on GitHub
 - SSH into your Hetzner account
