@@ -59,14 +59,7 @@ This starter is not only a good way to learn the basic skills of building a full
 
 ### create .env file for backend
 
-- create a `.env` file in the root directory of your project
-- copy in the following content
-- replace all capitalized variables with appropriate data
-  - USERNAME
-  - PASSWORD
-  - RANDOMSTRING
-  - ADMINPASSWORD
-- you can also change the backend/frontend ports if you need to
+- create a `.env` file in the root directory of your project and copy in the following content
 
   ``` text
   APP_NAME = Book Site API
@@ -78,6 +71,14 @@ This starter is not only a good way to learn the basic skills of building a full
   FRONTEND_URL = http://localhost:5002
   NODE_ENVIRONMENT = development
   ```
+
+- replace all capitalized variables with appropriate data
+  - USERNAME
+  - PASSWORD
+  - RANDOMSTRING
+  - ADMINPASSWORD
+- you can also change the backend/frontend ports if you need to, e.g. to avoid conflicts
+
 
 ### start the backend
 
